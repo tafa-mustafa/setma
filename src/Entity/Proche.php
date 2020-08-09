@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Entity;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Proche
- *
+ * @ApiResource()
  * @ORM\Table(name="proche", indexes={@ORM\Index(name="IDX_80DAF9996B899279", columns={"patient_id"})})
  * @ORM\Entity
  */

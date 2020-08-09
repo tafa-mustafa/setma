@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Entity;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ *  @ApiResource()
  * Consultation
  *
  * @ORM\Table(name="consultation", indexes={@ORM\Index(name="IDX_964685A66B899279", columns={"patient_id"})})

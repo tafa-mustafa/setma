@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -8,11 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Medecin
- *
+ * @ApiResource()
  * @ORM\Table(name="medecin")
  * @ORM\Entity
  */
-class Medecin
+class Medecin 
 {
     /**
      * @var int
