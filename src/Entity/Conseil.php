@@ -1,46 +1,33 @@
 <?php
 
 namespace App\Entity;
+
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\ConseilRepository;
 use Doctrine\ORM\Mapping as ORM;
-
-
-
 
 /**
  * @ApiResource()
- * Conseil
- *
- * @ORM\Table(name="conseil", indexes={@ORM\Index(name="IDX_3F3F06814F31A84", columns={"medecin_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ConseilRepository::class)
  */
 class Conseil
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="contenu", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $contenu;
 
     /**
-     * @var \Medecin
-     *
-     * @ORM\ManyToOne(targetEntity="Medecin")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="medecin_id", referencedColumnName="id")
-     * })
+     * @ORM\OneToOne(targetEntity=Consultation::class, cascade={"persist", "remove"})
      */
-    private $medecin;
+    private $consultation;
 
     public function getId(): ?int
     {
@@ -52,24 +39,22 @@ class Conseil
         return $this->contenu;
     }
 
-    public function setContenu(?string $contenu): self
+    public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
 
         return $this;
     }
 
-    public function getMedecin(): ?Medecin
+    public function getConsultation(): ?Consultation
     {
-        return $this->medecin;
+        return $this->consultation;
     }
 
-    public function setMedecin(?Medecin $medecin): self
+    public function setConsultation(?Consultation $consultation): self
     {
-        $this->medecin = $medecin;
+        $this->consultation = $consultation;
 
         return $this;
     }
-
-
 }

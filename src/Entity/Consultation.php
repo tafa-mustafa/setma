@@ -1,70 +1,51 @@
 <?php
 
 namespace App\Entity;
-use ApiPlatform\Core\Annotation\ApiResource;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\ConsultationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *  @ApiResource()
- * Consultation
- *
- * @ORM\Table(name="consultation", indexes={@ORM\Index(name="IDX_964685A66B899279", columns={"patient_id"})})
- * @ORM\Entity
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass=ConsultationRepository::class)
  */
 class Consultation
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="date", nullable=false)
+     * @ORM\Column(type="date")
      */
     private $date;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="temperature", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $temperature;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pression_arterielle", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $pressionArterielle;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="frequence_cardiauqe", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $frequenceCardiauqe;
+    private $frequenceCardiaque;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="taux_oxygene", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $tauxOxygene;
 
     /**
-     * @var \Patient
-     *
-     * @ORM\ManyToOne(targetEntity="Patient")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="patient_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="consultation")
      */
     private $patient;
 
@@ -109,14 +90,14 @@ class Consultation
         return $this;
     }
 
-    public function getFrequenceCardiauqe(): ?string
+    public function getFrequenceCardiaque(): ?string
     {
-        return $this->frequenceCardiauqe;
+        return $this->frequenceCardiaque;
     }
 
-    public function setFrequenceCardiauqe(string $frequenceCardiauqe): self
+    public function setFrequenceCardiaque(string $frequenceCardiaque): self
     {
-        $this->frequenceCardiauqe = $frequenceCardiauqe;
+        $this->frequenceCardiaque = $frequenceCardiaque;
 
         return $this;
     }
@@ -144,6 +125,4 @@ class Consultation
 
         return $this;
     }
-
-
 }

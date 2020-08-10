@@ -1,85 +1,64 @@
 <?php
 
 namespace App\Entity;
-use ApiPlatform\Core\Annotation\ApiResource;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\MedecinRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Medecin
  * @ApiResource()
- * @ORM\Table(name="medecin")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=MedecinRepository::class)
  */
-class Medecin 
+class Medecin
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
-    private $email;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_naissance", type="date", nullable=false)
+     * @ORM\Column(type="date")
      */
     private $dateNaissance;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pass_word", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $passWord;
+    private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="specialite", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $specialite;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Patient", mappedBy="medecin")
+     * @ORM\Column(type="string", length=255)
      */
-    private $patient;
+    private $pasword;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->patient = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+   
+
+  
 
     public function getId(): ?int
     {
@@ -110,18 +89,6 @@ class Medecin
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     public function getDateNaissance(): ?\DateTimeInterface
     {
         return $this->dateNaissance;
@@ -134,14 +101,26 @@ class Medecin
         return $this;
     }
 
-    public function getPassWord(): ?string
+    public function getEmail(): ?string
     {
-        return $this->passWord;
+        return $this->email;
     }
 
-    public function setPassWord(string $passWord): self
+    public function setEmail(string $email): self
     {
-        $this->passWord = $passWord;
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -151,39 +130,24 @@ class Medecin
         return $this->specialite;
     }
 
-    public function setSpecialite(string $specialite): self
+    public function setSpecialite(?string $specialite): self
     {
         $this->specialite = $specialite;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Patient[]
-     */
-    public function getPatient(): Collection
+    public function getPasword(): ?string
     {
-        return $this->patient;
+        return $this->pasword;
     }
 
-    public function addPatient(Patient $patient): self
+    public function setPasword(string $pasword): self
     {
-        if (!$this->patient->contains($patient)) {
-            $this->patient[] = $patient;
-            $patient->addMedecin($this);
-        }
+        $this->pasword = $pasword;
 
         return $this;
     }
 
-    public function removePatient(Patient $patient): self
-    {
-        if ($this->patient->contains($patient)) {
-            $this->patient->removeElement($patient);
-            $patient->removeMedecin($this);
-        }
-
-        return $this;
-    }
-
+    
 }

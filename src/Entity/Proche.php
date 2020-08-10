@@ -1,64 +1,60 @@
 <?php
 
 namespace App\Entity;
-use ApiPlatform\Core\Annotation\ApiResource;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\ProcheRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Proche
  * @ApiResource()
- * @ORM\Table(name="proche", indexes={@ORM\Index(name="IDX_80DAF9996B899279", columns={"patient_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ProcheRepository::class)
  */
 class Proche
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $telephone;
 
     /**
-     * @var \Patient
-     *
-     * @ORM\ManyToOne(targetEntity="Patient")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="patient_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=255)
      */
-    private $patient;
+    private $adresse;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Patient::class, mappedBy="proche")
+     */
+    private $patients;
+
+    public function __construct()
+    {
+        $this->patients = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,24 +102,50 @@ class Proche
         return $this->telephone;
     }
 
-    public function setTelephone(?string $telephone): self
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getPatient(): ?Patient
+    public function getAdresse(): ?string
     {
-        return $this->patient;
+        return $this->adresse;
     }
 
-    public function setPatient(?Patient $patient): self
+    public function setAdresse(string $adresse): self
     {
-        $this->patient = $patient;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
+    /**
+     * @return Collection|Patient[]
+     */
+    public function getPatients(): Collection
+    {
+        return $this->patients;
+    }
 
+    public function addPatient(Patient $patient): self
+    {
+        if (!$this->patients->contains($patient)) {
+            $this->patients[] = $patient;
+            $patient->addProche($this);
+        }
+
+        return $this;
+    }
+
+    public function removePatient(Patient $patient): self
+    {
+        if ($this->patients->contains($patient)) {
+            $this->patients->removeElement($patient);
+            $patient->removeProche($this);
+        }
+
+        return $this;
+    }
 }
