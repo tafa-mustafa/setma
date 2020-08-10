@@ -4,13 +4,17 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Entity\Conseil;
+use Faker\Generator;
 
-class AppFixtures extends Fixture
+
+
+class AppFixtures extends Conseil
 {
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
+         $conseil = new Conseil();
+         $manager->persist($conseil);
 
         $manager->flush();
     }
