@@ -25,22 +25,22 @@ class Consultation
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $temperature;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $pressionArterielle;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $frequenceCardiaque;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $tauxOxygene;
 
@@ -66,48 +66,48 @@ class Consultation
         return $this;
     }
 
-    public function getTemperature(): ?string
+    public function getTemperature(): ?int
     {
         return $this->temperature;
     }
 
-    public function setTemperature(string $temperature): self
+    public function setTemperature(int $temperature): self
     {
         $this->temperature = $temperature;
 
         return $this;
     }
 
-    public function getPressionArterielle(): ?string
+    public function getPressionArterielle(): ?int
     {
         return $this->pressionArterielle;
     }
 
-    public function setPressionArterielle(string $pressionArterielle): self
+    public function setPressionArterielle(int $pressionArterielle): self
     {
         $this->pressionArterielle = $pressionArterielle;
 
         return $this;
     }
 
-    public function getFrequenceCardiaque(): ?string
+    public function getFrequenceCardiaque(): ?int
     {
         return $this->frequenceCardiaque;
     }
 
-    public function setFrequenceCardiaque(string $frequenceCardiaque): self
+    public function setFrequenceCardiaque(int $frequenceCardiaque): self
     {
         $this->frequenceCardiaque = $frequenceCardiaque;
 
         return $this;
     }
 
-    public function getTauxOxygene(): ?string
+    public function getTauxOxygene(): ?int
     {
         return $this->tauxOxygene;
     }
 
-    public function setTauxOxygene(string $tauxOxygene): self
+    public function setTauxOxygene(int $tauxOxygene): self
     {
         $this->tauxOxygene = $tauxOxygene;
 

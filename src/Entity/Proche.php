@@ -37,7 +37,7 @@ class Proche
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $telephone;
 
@@ -97,12 +97,12 @@ class Proche
         return $this;
     }
 
-    public function getTelephone(): ?string
+    public function getTelephone(): ?int
     {
         return $this->telephone;
     }
 
-    public function setTelephone(string $telephone): self
+    public function setTelephone(int $telephone): self
     {
         $this->telephone = $telephone;
 
