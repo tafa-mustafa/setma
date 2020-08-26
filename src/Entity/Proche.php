@@ -2,17 +2,18 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ProcheRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProcheRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass=ProcheRepository::class)
  */
-class Proche
+class Proche extends User
 {
     /**
      * @ORM\Id()
@@ -31,10 +32,6 @@ class Proche
      */
     private $prenom;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
 
     /**
      * @ORM\Column(type="integer")
@@ -85,7 +82,7 @@ class Proche
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -96,7 +93,7 @@ class Proche
 
         return $this;
     }
-
+*/
     public function getTelephone(): ?int
     {
         return $this->telephone;

@@ -2,17 +2,18 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\MedecinRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MedecinRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass=MedecinRepository::class)
  */
-class Medecin
+class Medecin extends User
 {
     /**
      * @ORM\Id()
@@ -36,10 +37,10 @@ class Medecin
      */
     private $dateNaissance;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  */
+    // private $email;
 
     /**
      * @ORM\Column(type="integer")
@@ -51,10 +52,10 @@ class Medecin
      */
     private $specialite;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $pasword;
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  */
+    // private $pasword;
 
     public function getId(): ?int
     {
@@ -96,7 +97,7 @@ class Medecin
 
         return $this;
     }
-
+/** 
     public function getEmail(): ?string
     {
         return $this->email;
@@ -108,6 +109,7 @@ class Medecin
 
         return $this;
     }
+    */
 
     public function getTelephone(): ?int
     {
@@ -133,7 +135,7 @@ class Medecin
         return $this;
     }
 
-    public function getPasword(): ?string
+    /**public function getPasword(): ?string
     {
         return $this->pasword;
     }
@@ -144,6 +146,7 @@ class Medecin
 
         return $this;
     }
+    */
 
     
 }
