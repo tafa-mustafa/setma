@@ -19,10 +19,6 @@ class Consultation
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
 
     /**
      * @ORM\Column(type="integer")
@@ -49,22 +45,17 @@ class Consultation
      */
     private $patient;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+   
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 
     public function getTemperature(): ?int
     {
@@ -122,6 +113,18 @@ class Consultation
     public function setPatient(?Patient $patient): self
     {
         $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

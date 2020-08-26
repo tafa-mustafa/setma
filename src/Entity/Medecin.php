@@ -97,7 +97,7 @@ class Medecin extends User
 
         return $this;
     }
-/** 
+    /** 
     public function getEmail(): ?string
     {
         return $this->email;
@@ -109,7 +109,7 @@ class Medecin extends User
 
         return $this;
     }
-    */
+     */
 
     public function getTelephone(): ?int
     {
@@ -146,7 +146,5 @@ class Medecin extends User
 
         return $this;
     }
-    */
-
-    
+     */
 }
