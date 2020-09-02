@@ -2,41 +2,47 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ConsultationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
- * @ApiResource()
+ * ApiResource()
  * @ORM\Entity(repositoryClass=ConsultationRepository::class)
  */
 class Consultation
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $date;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $temperature;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $pressionArterielle;
-
-    /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $frequenceCardiaque;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $presionArtelielle;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $tauxOxygene;
 
@@ -46,59 +52,69 @@ class Consultation
     private $patient;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\OneToOne(targetEntity=Conseil::class, cascade={"persist", "remove"})
      */
-    private $date;
+    private $conseil;
 
-   
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
 
-    public function getTemperature(): ?int
+    public function setDate(string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getTemperature(): ?string
     {
         return $this->temperature;
     }
 
-    public function setTemperature(int $temperature): self
+    public function setTemperature(string $temperature): self
     {
         $this->temperature = $temperature;
 
         return $this;
     }
 
-    public function getPressionArterielle(): ?int
-    {
-        return $this->pressionArterielle;
-    }
-
-    public function setPressionArterielle(int $pressionArterielle): self
-    {
-        $this->pressionArterielle = $pressionArterielle;
-
-        return $this;
-    }
-
-    public function getFrequenceCardiaque(): ?int
+    public function getFrequenceCardiaque(): ?string
     {
         return $this->frequenceCardiaque;
     }
 
-    public function setFrequenceCardiaque(int $frequenceCardiaque): self
+    public function setFrequenceCardiaque(string $frequenceCardiaque): self
     {
         $this->frequenceCardiaque = $frequenceCardiaque;
 
         return $this;
     }
 
-    public function getTauxOxygene(): ?int
+    public function getPresionArtelielle(): ?string
+    {
+        return $this->presionArtelielle;
+    }
+
+    public function setPresionArtelielle(string $presionArtelielle): self
+    {
+        $this->presionArtelielle = $presionArtelielle;
+
+        return $this;
+    }
+
+    public function getTauxOxygene(): ?string
     {
         return $this->tauxOxygene;
     }
 
-    public function setTauxOxygene(int $tauxOxygene): self
+    public function setTauxOxygene(string $tauxOxygene): self
     {
         $this->tauxOxygene = $tauxOxygene;
 
@@ -117,14 +133,14 @@ class Consultation
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getConseil(): ?Conseil
     {
-        return $this->date;
+        return $this->conseil;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setConseil(?Conseil $conseil): self
     {
-        $this->date = $date;
+        $this->conseil = $conseil;
 
         return $this;
     }

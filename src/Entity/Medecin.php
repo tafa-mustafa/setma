@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Entity\User;
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\MedecinRepository;
-use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\MedecinRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * @ApiResource()
@@ -15,136 +15,71 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Medecin extends User
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $dateNaissance;
-
-    // /**
-    //  * @ORM\Column(type="string", length=255)
-    //  */
-    // private $email;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $specialite;
 
-    // /**
-    //  * @ORM\Column(type="string", length=255)
-    //  */
-    // private $pasword;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->dateNaissance;
-    }
-
-    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
-    {
-        $this->dateNaissance = $dateNaissance;
-
-        return $this;
-    }
-    /** 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+    /**
+     * @ORM\JoinColumn(nullable=false)
      */
+    private $Patient;
 
-    public function getTelephone(): ?int
+    /**
+     * @ORM\OneToMany(targetEntity=Patient::class, mappedBy="medecin", orphanRemoval=true)
+     */
+    private $patient;
+
+    public function __construct()
     {
-        return $this->telephone;
+        $this->patient = new ArrayCollection();
     }
 
-    public function setTelephone(int $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
+   
     public function getSpecialite(): ?string
     {
         return $this->specialite;
     }
 
-    public function setSpecialite(?string $specialite): self
+    public function setSpecialite(string $specialite): self
     {
         $this->specialite = $specialite;
 
         return $this;
     }
 
-    /**public function getPasword(): ?string
+    /**
+     * @return Collection|Patient[]
+     */
+    public function getPatient(): Collection
     {
-        return $this->pasword;
+        return $this->patient;
     }
 
-    public function setPasword(string $pasword): self
+    public function addPatient(Patient $patient): self
     {
-        $this->pasword = $pasword;
+        if (!$this->patient->contains($patient)) {
+            $this->patient[] = $patient;
+            $patient->setMedecin($this);
+        }
 
         return $this;
     }
-     */
+
+    public function removePatient(Patient $patient): self
+    {
+        if ($this->patient->contains($patient)) {
+            $this->patient->removeElement($patient);
+            // set the owning side to null (unless already changed)
+            if ($patient->getMedecin() === $this) {
+                $patient->setMedecin(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }

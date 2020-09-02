@@ -1,0 +1,132 @@
+[27-Aug-2020 13:24:00 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, nom VARCHAR(255) DEFAULT NULL, adresse VARCHAR(255) DEFAULT NULL, telephone VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, nom' at line 1"
+
+[27-Aug-2020 13:35:14 UTC] [error] Error thrown while running command "doctrine:schema:update --force". Message: "An exception occurred while executing 'CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C7' at line 1"
+
+[29-Aug-2020 13:18:23 UTC] [error] Error thrown while running command "'server:run'". Message: "Command "server:run" is not defined.
+
+Did you mean this?
+    server:dump"
+
+[31-Aug-2020 11:51:04 UTC] [error] Error thrown while running command "doctrine". Message: "Command "doctrine" is not defined.
+
+Did you mean one of these?
+    doctrine:cache:clear-collection-region
+    doctrine:cache:clear-entity-region
+    doctrine:cache:clear-metadata
+    doctrine:cache:clear-query
+    doctrine:cache:clear-query-region
+    doctrine:cache:clear-result
+    doctrine:database:create
+    doctrine:database:drop
+    doctrine:database:import
+    doctrine:ensure-production-settings
+    doctrine:fixtures:load
+    doctrine:mapping:convert
+    doctrine:mapping:import
+    doctrine:mapping:info
+    doctrine:migrations:current
+    doctrine:migrations:diff
+    doctrine:migrations:dump-schema
+    doctrine:migrations:execute
+    doctrine:migrations:generate
+    doctrine:migrations:latest
+    doctrine:migrations:list
+    doctrine:migrations:migrate
+    doctrine:migrations:rollup
+    doctrine:migrations:status
+    doctrine:migrations:sync-metadata-storage
+    doctrine:migrations:up-to-date
+    doctrine:migrations:version
+    doctrine:query:dql
+    doctrine:query:sql
+    doctrine:schema:create
+    doctrine:schema:drop
+    doctrine:schema:update
+    doctrine:schema:validate"
+
+[31-Aug-2020 11:52:06 UTC] [error] Error thrown while running command "doctrine:schema:update --force". Message: "An exception occurred while executing 'CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C7' at line 1"
+
+[31-Aug-2020 11:55:39 UTC] [error] Error thrown while running command "doctrine:schema:update --force". Message: "An exception occurred while executing 'CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C7' at line 1"
+
+[31-Aug-2020 11:57:03 UTC] [error] Error thrown while running command "migrated". Message: "Command "migrated" is not defined."
+
+[31-Aug-2020 11:57:13 UTC] [error] Error thrown while running command "migration". Message: "Command "migration" is not defined.
+
+Did you mean one of these?
+    doctrine:migrations:current
+    doctrine:migrations:diff
+    doctrine:migrations:dump-schema
+    doctrine:migrations:execute
+    doctrine:migrations:generate
+    doctrine:migrations:latest
+    doctrine:migrations:list
+    doctrine:migrations:migrate
+    doctrine:migrations:rollup
+    doctrine:migrations:status
+    doctrine:migrations:sync-metadata-storage
+    doctrine:migrations:up-to-date
+    doctrine:migrations:version
+    make:migration"
+
+[31-Aug-2020 11:57:49 UTC] [error] Error thrown while running command "doctrine:migrations:dump-schema". Message: "Your database schema does not contain any tables."
+
+[01-Sep-2020 13:52:46 UTC] [error] Error thrown while running command "make:entity". Message: "Warning: include(/home/wintextg/setmapp.wintech.sn/vendor/composer/../../src/Entity/Medecin.php): failed to open stream: No such file or directory"
+
+[01-Sep-2020 13:54:48 UTC] [error] Error thrown while running command "make:entity". Message: "Warning: include(/home/wintextg/setmapp.wintech.sn/vendor/composer/../../src/Entity/Medecin.php): failed to open stream: No such file or directory"
+
+[01-Sep-2020 13:57:06 UTC] PHP Warning:  Uncaught ReflectionException: Class "Doctrine\Common\Persistence\ObjectManager" not found while loading "App\DataFixtures\AppFixtures". in /home/wintextg/setmapp.wintech.sn/vendor/symfony/config/Resource/ClassExistenceResource.php:181
+Stack trace:
+#0 [internal function]: Symfony\Component\Config\Resource\ClassExistenceResource::throwOnRequiredClass('Doctrine\\Common...')
+#1 /home/wintextg/setmapp.wintech.sn/src/DataFixtures/AppFixtures.php(16): spl_autoload_call('Doctrine\\Common...')
+#2 /home/wintextg/setmapp.wintech.sn/vendor/symfony/error-handler/DebugClassLoader.php(343): include('/home/wintextg/...')
+#3 [internal function]: Symfony\Component\ErrorHandler\DebugClassLoader->loadClass('App\\DataFixture...')
+#4 [internal function]: spl_autoload_call('App\\DataFixture...')
+#5 /home/wintextg/setmapp.wintech.sn/vendor/symfony/config/Resource/ClassExistenceResource.php(84): class_exists('App\\DataFixture...')
+#6 /home/wintextg/setmapp.wintech.sn/vendor/symfony/dependency-injection/ContainerBuilder.php(348): Symf in /home/wintextg/setmapp.wintech.sn/vendor/symfony/config/Resource/ClassExistenceResource.php on line 181
+[01-Sep-2020 13:57:06 UTC] PHP Fatal error:  Declaration of App\DataFixtures\AppFixtures::load(Doctrine\Common\Persistence\ObjectManager $manager) must be compatible with Doctrine\Common\DataFixtures\FixtureInterface::load(Doctrine\Persistence\ObjectManager $manager) in /home/wintextg/setmapp.wintech.sn/src/DataFixtures/AppFixtures.php on line 16
+[01-Sep-2020 14:53:06 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE patient (id INT AUTO_INCREMENT NOT NULL, medecin_id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, telephone VARCHAR(255) NOT NULL, qr_code VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_1ADAD7EBE7927C74 (email), INDEX IDX_1ADAD7EB4F31A84 (medecin_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT N' at line 1"
+
+[01-Sep-2020 15:17:15 UTC] 2020-09-01T15:17:15+00:00 [critical] Uncaught Error: Undefined constant 'App\Entity\ApiPlatform\Core\Annotation\ApiResource'
+[01-Sep-2020 15:18:10 UTC] 2020-09-01T15:18:10+00:00 [critical] Uncaught Error: Undefined constant 'App\Entity\ApiPlatform\Core\Annotation\ApiResource'
+[01-Sep-2020 15:19:51 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE conseil (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'conseil' already exists"
+
+[01-Sep-2020 15:21:53 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE patient (id INT AUTO_INCREMENT NOT NULL, medecin_id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, telephone VARCHAR(255) NOT NULL, qr_code VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_1ADAD7EBE7927C74 (email), INDEX IDX_1ADAD7EB4F31A84 (medecin_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT N' at line 1"
+
+[02-Sep-2020 10:54:27 UTC] PHP Fatal error:  Access level to App\Entity\Patient::$id must be public (as in class App\Entity\User) in /home/wintextg/setmapp.wintech.sn/src/Entity/Patient.php on line 174
+[02-Sep-2020 10:57:13 UTC] PHP Fatal error:  Access level to App\Entity\Patient::$id must be protected (as in class App\Entity\User) or weaker in /home/wintextg/setmapp.wintech.sn/src/Entity/Patient.php on line 174
+[02-Sep-2020 10:58:56 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE conseil (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'conseil' already exists"
+
+[02-Sep-2020 11:09:16 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE patient (id INT AUTO_INCREMENT NOT NULL, medecin_id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, telephone VARCHAR(255) NOT NULL, qr_code VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_1ADAD7EBE7927C74 (email), INDEX IDX_1ADAD7EB4F31A84 (medecin_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT N' at line 1"
+
+[02-Sep-2020 11:15:30 UTC] [error] Error thrown while running command "doctrine:migrations:migrate". Message: "An exception occurred while executing 'CREATE TABLE conseil (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'conseil' already exists"
+
+[02-Sep-2020 11:21:57 UTC] [error] Error thrown while running command "shema". Message: "Command "shema" is not defined."
+
+[02-Sep-2020 11:23:18 UTC] [error] Error thrown while running command "doctrine:schema:update --force". Message: "An exception occurred while executing 'CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, telephone VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT N' at line 1"
+
+[02-Sep-2020 11:28:04 UTC] [error] Error thrown while running command "doctrine:schema:update --force". Message: "An exception occurred while executing 'CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, telephone VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB':
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JSON NOT NULL, password VARCHAR(255) NOT NULL, date_naissance VARCHAR(255) NOT N' at line 1"
+

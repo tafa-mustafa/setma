@@ -2,50 +2,20 @@
 
 namespace App\Entity;
 
-use App\Entity\User;
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\PatientRepository;
-use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\User;
+use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * ApiResource()
  * @ORM\Entity(repositoryClass=PatientRepository::class)
  */
 class Patient extends User
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $ages;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adresse;
+    
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,14 +23,20 @@ class Patient extends User
     private $qrCode;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Medecin::class, inversedBy="proche")
+     * @ORM\OneToMany(targetEntity=Medecin::class, mappedBy="Patient")
+     */
+    private $medecins;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Medecin::class, inversedBy="patient")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $medecin;
 
     /**
      * @ORM\ManyToMany(targetEntity=Proche::class, inversedBy="patients")
      */
-    private $proche;
+    private $Prohe;
 
     /**
      * @ORM\OneToMany(targetEntity=Consultation::class, mappedBy="patient")
@@ -69,74 +45,12 @@ class Patient extends User
 
     public function __construct()
     {
-        $this->proche = new ArrayCollection();
+        $this->medecins = new ArrayCollection();
+        $this->Prohe = new ArrayCollection();
         $this->consultation = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?int
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(int $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getAges(): ?int
-    {
-        return $this->ages;
-    }
-
-    public function setAges(int $ages): self
-    {
-        $this->ages = $ages;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
+   
 
     public function getQrCode(): ?string
     {
@@ -146,6 +60,37 @@ class Patient extends User
     public function setQrCode(string $qrCode): self
     {
         $this->qrCode = $qrCode;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Medecin[]
+     */
+    public function getMedecins(): Collection
+    {
+        return $this->medecins;
+    }
+
+    public function addMedecin(Medecin $medecin): self
+    {
+        if (!$this->medecins->contains($medecin)) {
+            $this->medecins[] = $medecin;
+            $medecin->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedecin(Medecin $medecin): self
+    {
+        if ($this->medecins->contains($medecin)) {
+            $this->medecins->removeElement($medecin);
+            // set the owning side to null (unless already changed)
+            if ($medecin->getPatient() === $this) {
+                $medecin->setPatient(null);
+            }
+        }
 
         return $this;
     }
@@ -165,24 +110,24 @@ class Patient extends User
     /**
      * @return Collection|Proche[]
      */
-    public function getProche(): Collection
+    public function getProhe(): Collection
     {
-        return $this->proche;
+        return $this->Prohe;
     }
 
-    public function addProche(Proche $proche): self
+    public function addProhe(Proche $prohe): self
     {
-        if (!$this->proche->contains($proche)) {
-            $this->proche[] = $proche;
+        if (!$this->Prohe->contains($prohe)) {
+            $this->Prohe[] = $prohe;
         }
 
         return $this;
     }
 
-    public function removeProche(Proche $proche): self
+    public function removeProhe(Proche $prohe): self
     {
-        if ($this->proche->contains($proche)) {
-            $this->proche->removeElement($proche);
+        if ($this->Prohe->contains($prohe)) {
+            $this->Prohe->removeElement($prohe);
         }
 
         return $this;
