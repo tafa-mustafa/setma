@@ -15,7 +15,7 @@ use App\Entity\User;
  */
 class Medecin extends User
 {
-    
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -23,21 +23,16 @@ class Medecin extends User
     private $specialite;
 
     /**
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=Patient::class, mappedBy="medecin")
      */
-    private $Patient;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Patient::class, mappedBy="medecin", orphanRemoval=true)
-     */
-    private $patient;
+    private $patients;
 
     public function __construct()
     {
-        $this->patient = new ArrayCollection();
+        $this->patients = new ArrayCollection();
     }
 
-   
+
     public function getSpecialite(): ?string
     {
         return $this->specialite;
@@ -53,15 +48,15 @@ class Medecin extends User
     /**
      * @return Collection|Patient[]
      */
-    public function getPatient(): Collection
+    public function getPatients(): Collection
     {
-        return $this->patient;
+        return $this->patients;
     }
 
     public function addPatient(Patient $patient): self
     {
-        if (!$this->patient->contains($patient)) {
-            $this->patient[] = $patient;
+        if (!$this->patients->contains($patient)) {
+            $this->patients[] = $patient;
             $patient->setMedecin($this);
         }
 
@@ -70,8 +65,8 @@ class Medecin extends User
 
     public function removePatient(Patient $patient): self
     {
-        if ($this->patient->contains($patient)) {
-            $this->patient->removeElement($patient);
+        if ($this->patients->contains($patient)) {
+            $this->patients->removeElement($patient);
             // set the owning side to null (unless already changed)
             if ($patient->getMedecin() === $this) {
                 $patient->setMedecin(null);
@@ -80,6 +75,4 @@ class Medecin extends User
 
         return $this;
     }
-
-   
 }

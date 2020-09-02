@@ -22,16 +22,7 @@ class Patient extends User
      */
     private $qrCode;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Medecin::class, mappedBy="Patient")
-     */
-    private $medecins;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Medecin::class, inversedBy="patient")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $medecin;
+  
 
     /**
      * @ORM\ManyToMany(targetEntity=Proche::class, inversedBy="patients")
@@ -43,14 +34,17 @@ class Patient extends User
      */
     private $consultation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=medecin::class, inversedBy="patients")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $medecin;
+
     public function __construct()
     {
-        $this->medecins = new ArrayCollection();
         $this->Prohe = new ArrayCollection();
         $this->consultation = new ArrayCollection();
     }
-
-   
 
     public function getQrCode(): ?string
     {
@@ -64,48 +58,11 @@ class Patient extends User
         return $this;
     }
 
-    /**
-     * @return Collection|Medecin[]
-     */
-    public function getMedecins(): Collection
-    {
-        return $this->medecins;
-    }
+ 
+   
 
-    public function addMedecin(Medecin $medecin): self
-    {
-        if (!$this->medecins->contains($medecin)) {
-            $this->medecins[] = $medecin;
-            $medecin->setPatient($this);
-        }
+   
 
-        return $this;
-    }
-
-    public function removeMedecin(Medecin $medecin): self
-    {
-        if ($this->medecins->contains($medecin)) {
-            $this->medecins->removeElement($medecin);
-            // set the owning side to null (unless already changed)
-            if ($medecin->getPatient() === $this) {
-                $medecin->setPatient(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getMedecin(): ?Medecin
-    {
-        return $this->medecin;
-    }
-
-    public function setMedecin(?Medecin $medecin): self
-    {
-        $this->medecin = $medecin;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Proche[]
@@ -160,6 +117,18 @@ class Patient extends User
                 $consultation->setPatient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMedecin(): ?medecin
+    {
+        return $this->medecin;
+    }
+
+    public function setMedecin(?medecin $medecin): self
+    {
+        $this->medecin = $medecin;
 
         return $this;
     }

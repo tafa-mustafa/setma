@@ -56,22 +56,22 @@ class User implements UserInterface
      */
    protected $telephone;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+   public function getId(): ?int
+   {
+       return $this->id;
+   }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
+   public function getEmail(): ?string
+   {
+       return $this->email;
+   }
 
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+   public function setEmail(string $email): self
+   {
+       $this->email = $email;
 
-        return $this;
-    }
+       return $this;
+   }
 
     /**
      * A visual identifier that represents this user.
@@ -83,16 +83,9 @@ class User implements UserInterface
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
+    public function getRoles(): ?array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
     public function setRoles(array $roles): self
@@ -102,12 +95,9 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
-        return (string) $this->password;
+        return $this->password;
     }
 
     public function setPassword(string $password): self

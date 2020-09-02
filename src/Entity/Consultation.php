@@ -39,7 +39,7 @@ class Consultation
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $presionArtelielle;
+    private $pressionArterielle;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -97,14 +97,14 @@ class Consultation
         return $this;
     }
 
-    public function getPresionArtelielle(): ?string
+    public function getPressionArterielle(): ?string
     {
-        return $this->presionArtelielle;
+        return $this->pressionArterielle;
     }
 
-    public function setPresionArtelielle(string $presionArtelielle): self
+    public function setPressionArterielle(string $pressionArterielle): self
     {
-        $this->presionArtelielle = $presionArtelielle;
+        $this->pressionArterielle = $pressionArterielle;
 
         return $this;
     }
